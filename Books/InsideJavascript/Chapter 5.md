@@ -150,3 +150,35 @@ function outerFunc(arg1, arg2) {
 var exam1 = outerFunc(2, 4) 
 exam1(2) // 0.6
 ```
+
+클로저의 활용 
+-----
+private 메서드 처럼 사용할수 있고 전역변수로 사용하지 함수 내부에서 사용 가능
+ex) html에서 박스 색깔 토글한다고 가정
+
+```html
+<body>
+  <div id="box" style="width: 80px; height: 80px"></div>
+
+
+  <script type="text/javascript">
+    const box = document.getElementById("box")
+
+    const outerFunc = function () {
+      let isToggle = true;
+
+      const innerFunc = function () {
+        const backgroundColor = '';
+        box.style.backgroundColor = backgroundColor === 'green' ? 'red' : 'green';
+        isToggle = !isToggle;
+      }
+
+      return innerFunc
+    }
+
+    box.addEventListener("click", outerFunc())
+  </script>
+</body>
+
+
+```
