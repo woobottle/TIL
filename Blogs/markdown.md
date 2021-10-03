@@ -169,7 +169,6 @@ h6 까지 적용
 ```
 [link Keyword](id)
 [id]: URL "Title"
-
 Link: [Google](googlelink)
 [googlelink]: https://google.com "Go google"
 ```
