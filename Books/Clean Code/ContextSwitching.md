@@ -27,12 +27,48 @@ Context Switching Cost
 * Cache 초기화 (l1 cache, l2 cache, l3cache를 비워야 한다)
 * Memory mapping 초기화
 
-Process Vs Thread
------
+##### Process
+* cpu의 시간을 할당받음
+* Data, Code, Stack, Heap의 구조를 할당받음
+* data에 전역변수 & 정적변수, stack에 로컬 변수
+* 프로세스 끼리 공유하는 자원은 없다. 한 프로세스에서 다른 프로세스 내부의 자원에 접근하려면 프로세스 간의 통신을 이용해야함
+
+
+##### Thread
+* Process내에서 Stack만 따로 할당, 나머지는 프로세스 내의 스레드 끼리 공유 가능
+* 프로세스가 할당받은 자원을 이용하는 수행 단위(프로세스 자식들)
+* 각각의 스레드는 별도의 레지스터와 스택을 가지고 있다. 힙 메모리는 서로 읽고 쓰기 가능
+
+
+##### Process Vs Thread
 * process가 thread보다 비용이 더 많이듬 
 * thread는 stack을 제외한 모든 메모리를 공유함(data, code, stack, heap 이중 stack만 공유)
 * process는 전부 다 바꿔줘야 하지만 Thread는 스택만 갈아주면 된다.
 
+##### Multi Process vs Multi Thread
+* Multi Process
+  * 하나의 application을 여러 프로세스로 구성
+  * 프로세스 하나가 문제가 있으면 걔만 죽으면 된다.
+  * ContextSwitching시 오버헤드가 크다
+    * 프로세스끼리 공유하는 자원이 다음 프로세스를 실행하려면 캐쉬에 있는 모든 데이터를 리셋 시키고 다시 캐쉬 정보를 불러와야 한다.
+    * 프로세스끼리 통신하는것이 복잡하고 어려움(IPC)    
+<br>
+
+* Multi Thread
+  * 하나의 application을 여러 스레드로 구성
+  * 시스템의 자원 소모가 감소 된다.(프로세스보다 자원을 할당하는 시스템 콜이 줄어든다) 
+  * 동기화 문제가 빡세다(이전에 책에 나온 동시성 관련 내용)    
+<br>
+
+* 왜 multi thread를 사용할까???
+  * Process간의 context switching시 cpu의 레지스터 교체 뿐만 아니라 RAM과 cpu사이의 캐쉬 메모리에 대한 데이터까지 초기화 되므로 오버헤드가 크다!!!!(알고 싶었던 내용)
+  * multi thread를 사용하는 것이 시스템 자원을 더 효율적으로 사용할 수 있다
+
+##### 캐시 메모리의 특징!!!
+* 주기억 장치와 CPU사이에 위치하며, 자주 사용하는 프로그램과 데이터를 기억한다.
+* cpu와 거의 속도가 비슷하다.
+* 캐시 메모리를 사용하면 주기억장치에 접근하는 횟수가 줄어드므로 컴퓨터 처리속도가 향상
+* 캐시의 크기는 크지 않다.
 
 ##### PCB 구성요소
 * Process State: 프로세스 상태(Create, Ready, Running, Waiting, Terminated)
@@ -56,7 +92,6 @@ Process Vs Thread
 * 메모리 주소 레지스터에서 주소참조 값을 읽어와서 메모리 버퍼 레지스터에 저장
 * 메모리 버퍼 레지스터에 있는 값이 명령이면 명령어 레지스터로 아니면 누산기 레지스터로
 * 프로세서의 구조를 아키텍처라 한다.
-  
 
 ##### 32비트, 64비트
 * 명령을 한번에 처리할 수 있는 레지스터의 비트 수
@@ -69,9 +104,12 @@ Process Vs Thread
 ipv4는 프로토콜의 주소가 32비트라는 제한된 공간에 있었고 사이트는 늘어가는데 32비트 주소 공간은 너무 부족했다    
 그래서 ipv6 프로토콜 64비트로 주소를 표현할 수 있는 것이 나왔다.
 
+
 <hr>
 
 1. <https://nesoy.github.io/articles/2018-11/Context-Switching>
 2. <http://itnovice1.blogspot.com/2019/08/blog-post_99.html>
 3. <https://www.youtube.com/watch?v=Fg00LN30Ezg&t=998s>
 4. <https://ko.wikipedia.org/wiki/IPv6>
+5. <https://gmlwjd9405.github.io/2018/09/14/process-vs-thread.html>
+6. <https://coding-factory.tistory.com/357>
