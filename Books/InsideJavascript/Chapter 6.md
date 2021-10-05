@@ -59,3 +59,90 @@ var you = new Person("you")
 ```
 
 getName//setName을 프로토타입의 메서드로 접근
+
+상속
+===
+
+### 프로타입을 이용한 상속
+
+```javascript
+  function create_object(o) {
+    function F() {}
+    F.prototype = o;
+    return new F();
+  }
+```
+
+prototype이 o인 F객체를 생성해서 리턴 하겠다!!   
+**프로토타입의 특성을 활용하여 상속을 구현하는 것이 프로토타입 기반의 상속이다**   
+
+
+### 클래스 기반의 상속
+
+```javascript
+function Person(arg) {
+  this.name = arg;
+}
+
+Person.prototype.setName = function(value) {
+  this.name = value;
+};
+
+Person.prototype.getName = function(value) {
+  return this.name;
+}
+
+function Student(arg) {
+
+}
+
+var you = new Person("iamhjoo");
+Student.prototype = you;
+
+var me = new Student("zzoon");
+me.setName("zzoon")
+console.log(me.getName()) // zzoon
+```
+
+### 캡슐화
+=> 기본적으로 여러 가지 정보를 하나의 틀 안에 담는 것을 의미, 여기서 중요한 것은 정보의 공개 여부(정보 은닉)
+
+```javascript
+var Person = function(arg) {
+  var name = arg ? arg : 'zzoon';
+
+  return {
+    getName : function() {
+      return name;
+    },
+    setName : function(arg) {
+      name = arg;
+    }
+  };
+
+  var me = Person();
+  console.log(me.getName()) // zzoon
+}
+```
+
+**주의할 점**
+private 멤버를 반환할 때 참조값을 반환하는 형태 이므로 값의 변경이 가능해진다
+```javascript
+var ArrCreate = function(arg) {
+  var arr = [1,2,3];
+
+  return {
+    getArr: function() {
+      return arr;
+    }
+  };
+}
+
+var obj = ArrCreate();
+var arr = obj.getArr();
+arr.push(5);
+console.log(obj.getArr()); // [1,2,3,5]
+```
+
+=> 깊은 복사로 값을 반환 하거나, 새로운 객체를 만들어서 값을 반환하거나 한다.
+
