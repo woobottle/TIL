@@ -92,12 +92,12 @@ a가 먼저 읽었나 b가 먼저 읽었냐에 따라 자원의 상황이 달라
 
 
 ### Semaphore vs Mutex
-둘다 Race condition을 예방하기 위해 나온 기술들 
+둘다 Race condition을 예방하기 위해 나온 기술들     
 왜 예방해야 하나면 Race condition 상황에서는 deadlock, starvation, mutual exclusion이 발생할 수 있기 때문
 
 임계구역(Critical Section)
 
-각 프로세스에서 공유 데이터를 접근하는 프로그램 코드 부분
+각 프로세스에서 공유 데이터를 접근하는 프로그램 코드 부분   
 한 프로세스가 임계구역을 수행할 때 다른 프로세스가 접근하지 못하도록 해야 한다.
 
 * 세마포어는 공유 자원에 세마포어의 변수만큼의 프로세스(또는 스레드)가 접근 가능
