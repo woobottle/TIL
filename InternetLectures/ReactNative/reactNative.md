@@ -8,3 +8,11 @@ bridge라는 것이 있어 이것을 가능하게 해준다.(안드로이드와 
 1. ios와 안드로이드에서는 event를 감지한다.
 2. 이 event를 bridge를 통해 자바스크립트에게 전송하고
 3. 자바스크립트에서 실행 결과를 브릿지를 통해 다시 네이티브 쪽의 운영체제로 전달
+
+
+react-native 는 html을 생산하는것이 아니다   
+div -> View   
+p -> Text   
+
+
+`<View style={styles.container}></View>` => border같은 일부 속성은 style에서 사용할수가 없다
