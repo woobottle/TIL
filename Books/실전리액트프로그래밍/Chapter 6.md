@@ -403,7 +403,7 @@ store.subscribe(() => {
 store.dispatch(addTimeline({ id: 1, desc: '코딩은 즐거워' }))
 ```
 
-
+ 
 ##### 리듀서에서 공통기능 분리하기
 
 src/common/createItemsLogic
