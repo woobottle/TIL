@@ -16,3 +16,24 @@ p -> Text
 
 
 `<View style={styles.container}></View>` => border같은 일부 속성은 style에서 사용할수가 없다
+
+
+react native내의 api 사용하면 기능들 많음  
+expo 자체적으로 제공하는 sdk가 있으므로 이걸 사용하면 개발에 편의성이 증가한다.  
+expo sdk는 react native를 복제해서 작업 되는 것  
+
+
+모든 `<View />` 는 flexbox 이다. flex-direction 기본 값은 Col   
+웹 에서는 우리가 `<div style="display: flex; flex-direction:row;"></div>` 이런식으로 해줬었음
+
+```js
+export default function App() {
+  return (
+    <View style={{ flex: 1, flexDirection: "row" }}>
+      <View style={{ flex: 1, backgroundColor: "red" }}></View>
+      <View style={{ flex: 1, backgroundColor: "blue" }}></View>
+      <View style={{ flex: 1, backgroundColor: "green" }}></View>
+    </View>
+  );
+}
+```
