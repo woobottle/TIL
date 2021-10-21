@@ -190,7 +190,7 @@ function Modal({ title, desc }) {
 
 아래는 React가 createElement를 사용하는 예시
 ```jsx
-const element = <a href="http://google.com">click</a>
+const element = <a href="http://google.com">click here</a>
 const element = React.createElement(
   'a',
   { href: 'http://google.com' },
@@ -244,8 +244,8 @@ setInterval(update, 1000); // 1초마다 h2의 부분만 업데이트 시킴
 ```
 
 ### 리액트 요소가 돔 요소로 만들어지는 과정
-리액트에서 데이터 변경에 의한 화면 업데이트는 렌더 단계 + 커밋 단계
-렌더 단계 => 실제 돔에 반경된 변경 사항을 파악하는 단계
+리액트에서 데이터 변경에 의한 화면 업데이트는 렌더 단계 + 커밋 단계   
+렌더 단계 => 실제 돔에 반영된 변경 사항을 파악하는 단계   
 커밋 단계 => 변경 사항을 실제 돔에 반영하는 단계
 
 실제 돔으로 만드는 과정을 보여줄 예제 코드
