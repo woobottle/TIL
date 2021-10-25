@@ -1,7 +1,6 @@
 const fs = require('fs');
-// const input = fs.readFileSync('/dev/stdin').toString().split(' ');
-// const first = +input[0];
-const first = 543212345;
+const input = fs.readFileSync('/dev/stdin').toString().split(' ');
+const first = +input[0];
 const result = Array.from({length: 10}, (i) => 0)
 
 const calc = (start, end, ten) => {

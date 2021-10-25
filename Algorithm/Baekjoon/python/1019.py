@@ -3,7 +3,7 @@ def calc(start, end, ten) :
   for i in range(len(result)):
     result[i] += count * ten
 
-def increase_by_number(num, ten) :
+def increase_by_number(num, ten) : # 자리수마다 카운팅 해주는 함수
   k = list(str(num))
   for i in k :
     result[int(i)] += ten
