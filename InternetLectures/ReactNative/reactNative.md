@@ -37,3 +37,6 @@ export default function App() {
   );
 }
 ```
+
+
+asyncStirage => 디바이스 내부에 저장하기 위해 사용하는 api
