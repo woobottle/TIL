@@ -4,10 +4,9 @@ def solution(N, duration, cost):
   def dynamic_programming():
     max_val = 0
     for i in range(N-1, -1, -1):
-      if(i + duration[i] <= N) :
-        print(i)
-        dp[i] = cost[i]
-        max_val = max(cost[i] + dp[N - i], max_val)
+      if i + duration[i] <= N :
+        dp[i] = max(dp[i+1], dp[i + duration[i]] + cost[i])
+    max_val = max(dp)
     return max_val
 
   result = dynamic_programming()

@@ -1,23 +1,24 @@
 def solution(N, fry, clean, C) :
   total = []
   for i in range(len(fry)) :
-    total.append([fry[i], clean[i], False, False])
+    total.append([fry[i], clean[i], 0])
   total.sort(key=lambda x : (x[0] + x[1], x[0]))
   
-  answer = 0
+  flag = True
+  minute = 0
   while (C != 0) :
-    answer += 1
     for i in range(len(total)) :
-      [fry, clean, is_working, is_cool] = i
-      if C == 0 : 
-        break
-      if not is_working :
-        i[2] = True
-      if not is_cool :
-        i[3] = True
+      fry, clean, next_run = total[i]
+      if next_run == minute :
+        total[i][2] = next_run + fry + clean
         C -= 1
+        if C == 0 :
+          minute += fry
+          flag = False
+    if flag :
+      minute += 1
   
-  return answer
+  return minute
 
 print(solution(2, [3, 6], [2, 1], 20)) # 58
 print(solution(4, [2, 2, 1, 3], [2, 4, 3, 2], 2))  # 2
