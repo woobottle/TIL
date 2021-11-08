@@ -1,5 +1,4 @@
 def solution(n, k):
-  arr = list(range(1, n))
   used = [0 for _ in range(n + 1)]
   result = []
 

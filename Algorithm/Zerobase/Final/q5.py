@@ -17,7 +17,6 @@ def solution(words, queries):
       if is_start_head :
         splitted_word = word[last_index:]
 
-      print(splitted_word, replaced_query)
       if replaced_query == splitted_word and len(query) == len(word) :
         count += 1
     answer.append(count)

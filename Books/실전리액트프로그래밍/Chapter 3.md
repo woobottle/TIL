@@ -666,7 +666,7 @@ function Greeting() {
 
 1. username 상태값이 변경되면 App 컴포넌트는 다시 렌더링 된다.
 2. Profile 컴포넌트는 React.memo로 만들어 졌고 속성값이 없기 때문에 최초 한 번만 렌더링
-3. Profile 컴포넌트의 렌더링 여부와 상관없이 Greetin 컴포넌트의 Consumer 컴포넌트는 다시 렌더링 된다.
+3. Profile 컴포넌트의 렌더링 여부와 상관없이 Greeting 컴포넌트의 Consumer 컴포넌트는 다시 렌더링 된다.
 4. 위의 방법으로 중간 컴포넌트의 렌더링 여부와 상관없이 Provider 컴포넌트의 값이 변경되면 Consumer 컴포넌트가 다시 렌더링 된다.
 
 ### 컨텍스트 API 활용하기
