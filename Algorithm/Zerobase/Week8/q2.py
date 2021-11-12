@@ -22,3 +22,6 @@ def solution(N, fry, clean, C) :
 
 print(solution(2, [3, 6], [2, 1], 20)) # 58
 print(solution(4, [2, 2, 1, 3], [2, 4, 3, 2], 2))  # 2
+
+
+# 이분 탐색으로 조져보자
