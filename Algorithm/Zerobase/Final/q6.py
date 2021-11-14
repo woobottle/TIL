@@ -1,6 +1,32 @@
+from itertools import permutations
+
 def solution(n, weak, dist):
-    answer = 0
-    return answer
+  answer = len(dist) + 1
+  weak_length = len(weak)
+  for i in range(weak_length) :
+    weak.append(weak[i] + n)
+  
+  dist_permutations = list(map(list,permutations(dist, len(dist))))
+
+  for i in range(weak_length) :
+    temporary_range = [weak[j] for j in range(i, i + weak_length)]
+
+    for dist_permutes in dist_permutations :
+      result = 1
+      friend_index = 0
+      checked_length = temporary_range[0] + dist_permutes[friend_index]
+      for k in range(weak_length) :
+        if temporary_range[k] > checked_length :
+          result += 1
+          
+          if result > len(dist_permutes) :
+            break
+          
+          friend_index += 1
+          checked_length = temporary_range[k] + dist_permutes[friend_index]
+      
+      answer = min(answer, result)
+  return answer
 
 
 n = 12
