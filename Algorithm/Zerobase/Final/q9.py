@@ -1,4 +1,5 @@
 from itertools import permutations
+import re
 
 def calculate(op, num1, num2) :
   result = 0
@@ -25,7 +26,8 @@ def solution(expression) :
   if last_index != len(expression) :
     temp.append(expression[last_index:])
     last_index = 0
-  
+  # temp = re.split('(\D)', expression)
+
   priority_list = list(map(list,permutations([*has], len([*has]))))
 
   for priority in priority_list :

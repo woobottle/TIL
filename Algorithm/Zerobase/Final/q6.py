@@ -26,15 +26,28 @@ def solution(n, weak, dist):
           checked_length = temporary_range[k] + dist_permutes[friend_index]
       
       answer = min(answer, result)
+
+  if answer > len(dist) :
+    return -1
   return answer
 
 
-n = 12
-weak = [1, 5, 6, 10]
-dist = [1, 2, 3, 4]
-print(solution(n, weak, dist))
+# n = 12
+# weak = [1, 5, 6, 10]
+# dist = [1, 2, 3, 4]
+# print(solution(n, weak, dist))
 
-n = 12
-weak = [1, 3, 4, 9, 10]
-dist = [3, 5, 7]
-print(solution(n, weak, dist))
+# n = 12
+# weak = [1, 3, 4, 9, 10]
+# dist = [3, 5, 7]
+# print(solution(n, weak, dist))
+
+# N = 200
+# weak = [0, 100]
+# dist = [1, 1]
+# print(solution(N, weak, dist)) # 2
+
+N = 200
+weak = [0, 10, 50, 80, 120, 160]
+dist = [1, 10, 5, 40, 30]
+print(solution(N, weak, dist))  # 3
