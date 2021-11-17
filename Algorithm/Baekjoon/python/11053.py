@@ -8,7 +8,7 @@ for i in range(1, n) :
   if (max_value <= l[i]) :
     dp[i] = max(dp) + 1
     max_value = l[i]
-  else :
+  else : 
     dp[i] = max(dp)
 
 print(dp)
