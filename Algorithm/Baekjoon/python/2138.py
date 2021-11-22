@@ -84,7 +84,7 @@ def not_change_zero_index(light) :
         light[i+1] = str(1 - int(light[i+1]))
 
   if light == target:
-      return count
+      return count 
 
   return 100001
 
