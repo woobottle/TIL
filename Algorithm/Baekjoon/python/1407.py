@@ -1,18 +1,13 @@
 a,b = map(int, input().split())
 
 def calc(number) :
-  i = 1
-  count = 0
-  x = number
-  while x > 0 :
-    if x % 2 != 0 :
-      y = x // 2 + 1
-    else :
-      y = x // 2
-    count += y * i
-    i *= 2
-    x -= y
-    
-  return count
+  if number == 0 :
+    return 0
+  elif number == 1 :
+    return 1 
+  elif number % 2 == 0 :
+    return number // 2 + 2 * calc(number // 2)
+  elif number % 2 == 1 :
+    return number // 2 + 2 * calc(number // 2) + 1
 
 print(calc(b) - calc(a-1))
