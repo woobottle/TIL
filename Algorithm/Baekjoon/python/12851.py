@@ -4,6 +4,7 @@ visited = [[-1, 0] for _ in range(MAX_LENGTH)]
 
 queue = []
 queue.append(n)
+# 처음 방문한 곳은 방문정보와 방법의 수를 업데이트
 visited[n][0] = 0
 visited[n][1] = 1
 
@@ -19,6 +20,8 @@ while queue :
         visited[i][1] = visited[x][1]
         queue.append(i)
       
+      # 방문한적이 있고 바로 다음 방문할 예정이라면
+      # 방문예정인 곳의 방법의 수는 이전 스팟의 방법의 수를 더해주어야 한다.
       elif visited[i][0] == visited[x][0] + 1 :
         visited[i][1] += visited[x][1]
 

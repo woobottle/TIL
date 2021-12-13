@@ -10,7 +10,6 @@ location[n] = 0
 while queue :
   curr_n, curr_time = queue.popleft()
 
-
   next_n = curr_n * 2
   if 0 <= next_n <= 100000 and (location[next_n] == -1 or location[next_n] > curr_time):
     location[next_n] = curr_time
