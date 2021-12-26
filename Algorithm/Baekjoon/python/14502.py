@@ -1,51 +1,77 @@
 import sys 
 import copy
 from collections import deque
-
+from itertools import combinations
 input = sys.stdin.readline
+directions = [[1,0], [-1,0], [0,1], [0,-1]]
 
-dx = [0, 0, -1, 1]
-dy = [1, -1, 0, 0]
+def bfsAndCountZero(array, viruses) :
+  height = len(array)
+  width = len(array[0])
+  visited = [[0] * width for _ in range(height)]
+  zero_count = 0
 
-N, M = map(int, input().split())
-arr = [list(map(int, input().split())) for _ in range(N)]
-ans = 0
-q = deque()
+  queue = deque()
+  for virus in viruses :
+    queue.append(virus)
 
-def bfs() :
-  global ans
-  w = copy.deepcopy(arr)
-  for i in range(N) :
-    for j in range(M) :
-      if w[i][j] == 2 :
-        q.append([i,j])
+  while queue :
+    curr_x, curr_y = queue.pop()
+    for dir in directions :
+      dir_x, dir_y = dir
+      next_x = curr_x + dir_x
+      next_y = curr_y + dir_y
+      
+      if next_x < 0 or height <= next_x or next_y < 0 or width <= next_y :
+        continue
+      
+      if visited[next_x][next_y] :
+        continue
+
+      if array[next_x][next_y] == 0 :
+        array[next_x][next_y] = 2
+        visited[next_x][next_y] = 1
+        queue.append([next_x, next_y])
+
+  for x in range(height) :
+    for y in range(width) :
+      if array[x][y] == 0 :
+        zero_count += 1
   
-  while q :
-    x, y = q.popleft()
-    for i in range(4) :
-      nx = x + dx[i]
-      ny = y + dy[i]
-      if 0 <= nx < N and 0 <= ny < M :
-        if w[nx][ny] == 0 :
-          w[nx][ny] = 2 
-          q.append([nx, ny])
+  return zero_count
+
+
+def BOJ14502() :
+  N, M = map(int, input().split())
+  graph = []
+  for _ in range(N) :
+    graph.append(list(map(int, input().split())))
   
-  cnt = 0
-  for i in w :
-    cnt += i.count(0)
-  ans = max(ans, cnt)
+  virus_list = []
+  empty_list = []
+  answer = 0
+  
+  for x in range(N) :
+    for y in range(M) :
+      if graph[x][y] == 2 :
+        virus_list.append([x,y])
+      elif graph[x][y] == 0 :
+        empty_list.append([x,y])
+  
+  empty_combinations = list(combinations(empty_list, 3))
+  
+  for empties in empty_combinations :
+    for empty in empties :
+      x, y = empty
+      graph[x][y] = 1
 
-def wall(x) :
-  if x == 3 :
-    bfs() 
-    return 
-  for i in range(N) :
-    for j in range(M) :
-      if arr[i][j] == 0 :
-        arr[i][j] = 1
-        wall(x+1)
-        arr[i][j] = 0
+    temp_graph = copy.deepcopy(graph)
+    answer = max(answer, bfsAndCountZero(temp_graph, virus_list))
 
-wall(0)
-print(ans)
-# https: // tooo1.tistory.com/447
+    for empty in empties:
+      x, y = empty
+      graph[x][y] = 0
+
+  print(answer)
+
+BOJ14502()
