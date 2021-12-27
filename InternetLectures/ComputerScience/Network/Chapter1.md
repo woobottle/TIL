@@ -37,9 +37,9 @@ ISP - 전용선 - 라우터 - 방화벽
 Application 응용 서비스 HTTP(웹), SMTP(메일)
 Presentation 인코딩 / 암호화 / 압축
 Session   TCP/IP 통신 연결을 수립/ 유지 / 중단
-Transport Tcp, UDP
-Network Ip통신, 라우팅
-DataLink 이더넷, 랜카드, Mac 통신, 에러검출/재전송
+Transport Tcp, UDP, l4로드밸런서
+Network Ip통신, 라우팅, l3스위치/라우터
+DataLink 이더넷, 랜카드, Mac 통신, 에러검출/재전송, 모뎀/스위치
 Physical 네트워크 하드웨어 전송 기술
 
 ![](2021-12-07-20-28-51.png)
