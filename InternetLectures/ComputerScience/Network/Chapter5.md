@@ -38,8 +38,8 @@ Link State
 ![](2022-01-01-00-12-01.png)
 
 ### 동적 라우팅 구분
-AS(Autonomous System)에 따라 구분 => 성격이 같은 클러스터 집단이라고 생각하면 될듯
-IGP(Interior Gateway Protocol) -> AS 내에서 동작하는 라우팅 프로토콜 (RIP, OSPF)
+AS(Autonomous System)에 따라 구분 => 성격이 같은 클러스터 집단이라고 생각하면 될듯   
+IGP(Interior Gateway Protocol) -> AS 내에서 동작하는 라우팅 프로토콜 (RIP, OSPF)    
 EGP(Exterior Gateway Protocol) -> AS 와 AS간의 라우팅 프로토콜 (BGP)
 
 ![](2022-01-01-10-22-04.png)
