@@ -1,3 +1,4 @@
+from collections import deque
 import sys
 input = sys.stdin.readline
 
@@ -7,23 +8,12 @@ def BOJ14503() :
   global cleared
   global graph
 
-  def is_all_clear(r, c) :
-    dirs = [[1, 0], [-1, 0], [0, 1], [0, -1]]
-    flag = True
-    for dir_x, dir_y in dirs :
-      n_x = r + dir_x
-      n_y = c + dir_y
-      if 0 <= n_x < N and 0 <= n_y < M and (cleared[n_x][n_y] == 0 or graph[n_x][n_y] == 0) :
-        flag = False
-        break
-    return flag
-  
-  def dfs(r, c, d) :
-    stack = []
-    stack.append([r, c, d])
+  def bfs(r, c, d) :
+    queue = deque()
+    queue.append([r, c, d])
     
-    while stack :
-      x, y, direction = stack.pop()
+    while queue :
+      x, y, direction = queue.popleft()
       flag = True
       for dir_x, dir_y, dir in directions[direction] :
         n_x = x + dir_x
@@ -31,7 +21,7 @@ def BOJ14503() :
         n_dir = dir
         if 0 <= n_x < N and 0 <= n_y < M and cleared[n_x][n_y] == 0 and graph[n_x][n_y] == 0:
           cleared[n_x][n_y] = 1
-          stack.append([n_x, n_y, n_dir])
+          queue.append([n_x, n_y, n_dir])
           flag = False
           break
       
@@ -40,7 +30,7 @@ def BOJ14503() :
         n_x = back_x + x
         n_y = back_y + y
         if graph[n_x][n_y] != 1 :
-          stack.append([x + back_x, y + back_y, direction])
+          queue.append([x + back_x, y + back_y, direction])
   
   N, M = map(int, input().split())
   r, c, d = map(int, input().split())
@@ -58,7 +48,7 @@ def BOJ14503() :
     graph.append(list(map(int, input().split())))
 
   cleared[r][c] = 1
-  dfs(r, c, d)
+  bfs(r, c, d)
   
   count = 0
   for i in range(N - 1) :

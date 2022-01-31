@@ -11,7 +11,7 @@ def BOJ9655() :
   for i in range(1001) :
     if dp[i] != 3 :
       player = dp[i]
-      next_player = (player+1) % 2
+      next_player = player ^ 1
       if i + 1 < 1001 :
         dp[i+1] = next_player
       if i + 3 < 1001:
