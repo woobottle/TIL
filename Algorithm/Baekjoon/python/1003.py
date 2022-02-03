@@ -14,7 +14,6 @@ def BOJ1003() :
       temp.append(a+b)
     dp[i] = temp
 
-  
   for i in range(T) :
     print(*dp[int(input())])
   

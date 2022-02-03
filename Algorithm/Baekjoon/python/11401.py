@@ -21,5 +21,4 @@ def BOJ11401():
   N, K = map(int, input().split())
   print((factorial(N) % prime * pow(factorial(K) * factorial(N-K), prime - 2)) % prime)
 
-
 BOJ11401()

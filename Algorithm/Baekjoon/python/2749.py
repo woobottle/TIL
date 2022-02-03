@@ -17,7 +17,7 @@ def BOJ2749():
   routine_length = find_routine()
   n = int(input())
   
-  fibonacci = [0, 1, 1] + [0] * int(1e7)
+  fibonacci = [0, 1, 1] + [0] * int(routine_length)
   for i in range(3, routine_length):
     fibonacci[i] = int((fibonacci[i-2] % target_num + fibonacci[i-1] % target_num) % target_num)
 
