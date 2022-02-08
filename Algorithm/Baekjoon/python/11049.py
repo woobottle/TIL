@@ -25,7 +25,8 @@ def BOJ11049() :
           # dp[AB] + dp[CD] + A[0] * B[1] * D[1], 
           # dp[ABC] + dp[D] + A[0] * C[1] * D[1],
           # )
-    
+  
+  print(dp)
   print(dp[0][len(l)-1])
 
 BOJ11049()

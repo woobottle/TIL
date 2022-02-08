@@ -17,8 +17,11 @@ def BOJ11401():
       return (pow(a, b//2) ** 2) % prime
     else:
       return (pow(a, b//2) ** 2) * a % prime
-
+         
   N, K = map(int, input().split())
-  print((factorial(N) % prime * pow(factorial(K) * factorial(N-K), prime - 2)) % prime)
+
+  A = factorial(N)
+  B = factorial(K) * factorial(N-K)
+  print((A % prime * pow(B, prime-2) % prime) % prime)
 
 BOJ11401()
