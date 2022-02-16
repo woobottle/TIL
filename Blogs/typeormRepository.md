@@ -1,7 +1,7 @@
 # TypeOrm Repository API
 
 목차     
-[typeOrm 연결](#typeorm-연결)    
+[typeOrm 연결](#typeorm)    
 [모델 선언](#모델-선언)    
 [관계 선언](#관계-선언)    
 [repositoryApi 사용](#repositoryapi-사용)    
@@ -21,7 +21,7 @@
 
 간단한 typeorm 사용법과 최근 발생한 이슈사항에 대해 정리 하겠습니다.     
 
-### typeOrm 연결
+### typeOrm
 ---
 
 nest에서는 아래와 같이 사용했습니다
