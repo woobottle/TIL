@@ -1,29 +1,44 @@
 import math
+import heapq
 import sys
 input = sys.stdin.readline
-max_num = 1e8
 
-def BOJ438() :
-  def get_dist(one, two) :
-    x, y = one
-    x1, y1 = two
-    return math.sqrt(math.pow(x - x1, 2) + math.pow(y - y1, 2))
+def BOJ4386() :
   
+  def get_dist(x1, y1, x2, y2) :
+    return math.sqrt(math.pow(x1-x2, 2) + math.pow(y1-y2, 2)) 
+
   n = int(input())
-  graph = []
+  stars = []
   for _ in range(n) :
-    graph.append(list(map(float, input().split())))
-  
-  graph.sort()
-  cost = []
-  
-  for i in range(n) :
-    temp_cost = max_num
-    for j in range(n) :
-      if i != j :
-        temp_cost = min(temp_cost, get_dist(graph[i], graph[j]))
-    cost.append(temp_cost)
+    stars.append(list(map(float, input().split())))
 
-  print("{0:.2f}".format(sum(cost)))
+  graph = [[] for _ in range(n+1)]
+  visited = [False for _ in range(n+1)]
 
-BOJ438()
+  for i in range(len(stars)) :
+    for j in range(i+1, len(stars)) :
+      x1, y1 = stars[i]
+      x2, y2 = stars[j]
+      cost = get_dist(x1, y1, x2, y2)
+      graph[i].append([cost, j])
+      graph[j].append([cost, i])
+
+  def prim() :
+    result = 0
+    queue = []
+    queue.append([0, 1])
+
+    while queue :
+      curr_cost, curr_node = heapq.heappop(queue)
+
+      if visited[curr_node] == False :
+        visited[curr_node] = True
+        result += curr_cost
+        for next_cost, next_node in graph[curr_node] :
+          heapq.heappush(queue, (next_cost, next_node))
+
+    return result
+
+  print(prim())
+BOJ4386()
