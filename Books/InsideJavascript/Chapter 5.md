@@ -120,7 +120,7 @@ function printFunc() {
   }
 
   return printValue
-}
+} 
 
 var inner = printFunc()
 inner()
