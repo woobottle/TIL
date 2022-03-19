@@ -1,0 +1,77 @@
+@keyframes shaking {
+  0% {
+    transform: rotate(5deg);
+  }
+
+  10% {
+    transform: rotate(-5deg);
+  }
+
+  20% {
+    transform: rotate(5deg);
+  }
+
+  30% {
+    transform: rotate(-5deg);
+  }
+
+  40% {
+    transform: rotate(5deg);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+
+  60% {
+    transform: rotate(5deg);
+  }
+
+  70% {
+    transform: rotate(-5deg);
+  }
+
+  80% {
+    transform: rotate(5deg);
+  }
+
+  90% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes progressing {
+  0% {
+    width: 0px;
+  }
+
+  50% {
+    width: 300px;
+  }
+
+  100% {
+    width: 0px;
+  }
+}
+
+.progressBar {
+  border: 1px solid black;
+  width: 300px;
+  height: 20px;
+  position: relative;
+  animation: shaking 6s linear infinite;
+}
+
+.progressBar::after {
+  content: '';
+  position: absolute;
+  background-color: black;
+  width: 0px;
+  height: inherit;
+  animation: progressing 6s linear infinite;
+  /* animation: progressing 6s linear infinite; */
+}
