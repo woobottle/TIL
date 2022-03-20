@@ -3,12 +3,15 @@ const spiderWeb = document.querySelector('.spider-web')
 
 const screen = { x: window.screen.width, y: window.screen.height }
 const initialPointer = { x: 0, y: 0 }
+// 이동할 거리
 const offset = { x: 0, y: 0 }
 
 const spiderMoveHandler = (e) => {
+  // clientX,Y 는 viewport를 기준으로 x,y 위치를 반환함
+  // 모바일에서는 touches를 통해 커서의 위치를 가져올 수 있다.
   const cursorX = e.clientX || e.touches[0].clientX;
   const cursorY = e.clientY || e.touches[0].clientY;
-  
+
   offset.x = cursorX - initialPointer.x;
   offset.y = cursorY - initialPointer.y;
 
@@ -36,12 +39,30 @@ spider.addEventListener('mouseup', () => {
 })
 
 spider.addEventListener("mousedown", (e) => {
-  initialPointer.x = e.clientX - offset.x; // clientX,Y 는 viewport를 기준으로 x,y 위치를 반환함
+  // drag로 이동한 경우 translate로 offset의 x,y 만큼 이동한 상황이다.
+  // translate는 현재 위치를 기반으로 이동하므로 이전에 이동한 offset의 values 만큼 빼주어야 한다.
+  initialPointer.x = e.clientX - offset.x;
   initialPointer.y = e.clientY - offset.y;
   
   addEventListener("mousemove", spiderMoveHandler);
   initialWeb();
 });
+
+spider.addEventListener("touchend", () => {
+  removeEventListener("touchmove", spiderMoveHandler);
+  shootWeb();
+});
+
+spider.addEventListener("touchstart", (e) => {
+  // spider를 터치시 아래 요소들도 같이 터치되는 것을 막기위해 사용
+  e.preventDefault();
+  initialPointer.x = e.clientX || e.touches[0].clientX - offset.x; // clientX,Y 는 viewport를 기준으로 x,y 위치를 반환함
+  initialPointer.y = e.clientY || e.touches[0].clientY - offset.y;
+
+  addEventListener("touchmove", spiderMoveHandler);
+  initialWeb();
+});
+
 
 // getBoundingClientRect 는 dom 요소의 뷰포트에서의 위치를 반환해준다.
 // boxPosition.x = dragBox.getBoundingClientRect().x;
@@ -50,20 +71,3 @@ spider.addEventListener("mousedown", (e) => {
 // mouseup
 // mousedown
 // mousemove
-
-
-spider.addEventListener("touchend", () => {
-  console.log('touchend')
-  removeEventListener("touchmove", spiderMoveHandler);
-  shootWeb();
-});
-
-spider.addEventListener("touchstart", (e) => {
-  console.log('touchstart')
-  e.preventDefault();
-  initialPointer.x = e.clientX || e.touches[0].clientX - offset.x; // clientX,Y 는 viewport를 기준으로 x,y 위치를 반환함
-  initialPointer.y = e.clientY || e.touches[0].clientY - offset.y;
-
-  addEventListener("touchmove", spiderMoveHandler);
-  initialWeb();
-});
