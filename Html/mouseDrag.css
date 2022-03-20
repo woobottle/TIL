@@ -1,3 +1,8 @@
+body {
+  background-color: black;
+  height: 20000px;
+}
+
 .spider {
   position: fixed;
   top: 50px;
@@ -8,7 +13,7 @@
 .spider-wrist {
   width: 100px;
   height: 100px;
-  background-image: url("https://flyclipart.com/thumb2/web-clipart-spiderman-shooting-web-345429.png");
+  background-image: url("./images/spider-man-shooting.png");
   background-position: initial;
   background-size: contain;
   background-repeat: no-repeat;
@@ -20,10 +25,10 @@
   position: absolute;
   z-index: 1;
   top: 25px;
-  left: 0;
+  left: 20px;
   width: 50px;
   height: 50px;
-  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcP69QCPmYWXTdXNjgdRfgEo9H-H1tdUyssQ&usqp=CAU");
+  background-image: url("./images/spider-web.png");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
