@@ -5,9 +5,9 @@ const screen = { x: window.screen.width, y: window.screen.height }
 const initialPointer = { x: 0, y: 0 }
 const offset = { x: 0, y: 0 }
 
-const mouseMoveHandler = (e) => {
-  const cursorX = e.clientX;
-  const cursorY = e.clientY;
+const spiderMoveHandler = (e) => {
+  const cursorX = e.clientX || e.touches[0].clientX;
+  const cursorY = e.clientY || e.touches[0].clientY;
   
   offset.x = cursorX - initialPointer.x;
   offset.y = cursorY - initialPointer.y;
@@ -17,7 +17,7 @@ const mouseMoveHandler = (e) => {
 };
 
 const shootWeb = () => {
-  spiderWeb.style.transform = `translateX(${screen.x}px)`;
+  spiderWeb.style.transform = `translateX(${screen.x * 1.5}px)`;
   spiderWeb.style.transition = `1s`;
 }
 
@@ -31,7 +31,7 @@ spider.addEventListener('click', () => {
 })
 
 spider.addEventListener('mouseup', () => {
-  removeEventListener('mousemove', mouseMoveHandler);
+  removeEventListener('mousemove', spiderMoveHandler);
   shootWeb();
 })
 
@@ -39,7 +39,7 @@ spider.addEventListener("mousedown", (e) => {
   initialPointer.x = e.clientX - offset.x; // clientX,Y 는 viewport를 기준으로 x,y 위치를 반환함
   initialPointer.y = e.clientY - offset.y;
   
-  addEventListener("mousemove", mouseMoveHandler);
+  addEventListener("mousemove", spiderMoveHandler);
   initialWeb();
 });
 
@@ -50,3 +50,20 @@ spider.addEventListener("mousedown", (e) => {
 // mouseup
 // mousedown
 // mousemove
+
+
+spider.addEventListener("touchend", () => {
+  console.log('touchend')
+  removeEventListener("touchmove", spiderMoveHandler);
+  shootWeb();
+});
+
+spider.addEventListener("touchstart", (e) => {
+  console.log('touchstart')
+  e.preventDefault();
+  initialPointer.x = e.clientX || e.touches[0].clientX - offset.x; // clientX,Y 는 viewport를 기준으로 x,y 위치를 반환함
+  initialPointer.y = e.clientY || e.touches[0].clientY - offset.y;
+
+  addEventListener("touchmove", spiderMoveHandler);
+  initialWeb();
+});
