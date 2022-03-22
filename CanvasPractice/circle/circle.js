@@ -37,3 +37,27 @@ class App {
 window.onload = () => {
   new App();
 }
+
+
+class People {
+  constructor(age, name) {
+    this.age = age;
+    this.name = name;
+  }
+}
+
+class Computer {
+  constructor(company) {
+    this.company = company;
+  }
+}
+
+class Programmer extends People {
+  constructor(age, name, job) {
+    super(age, name);
+    this.job = job;
+  }
+}
+
+const test = new Programmer(10, 'test', 'programmer')
+console.log(test);
