@@ -13,4 +13,4 @@ def binary_search(data, search):
     if search > data[medium]:
       return binary_search(data[medium:], search)
     else :
-      return binaray_search(data[:medium], search)
+      return binary_search(data[:medium], search)

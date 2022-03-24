@@ -29,3 +29,28 @@ const counterNumber = counter()
 setInterval(() => counterNumber(), 30);
 // 3초에 100을 올려야함
 
+
+function debounce(callback, delay) {
+  let timer;
+
+  return function(...args) {
+    if(timer) clearTimeout(timer)
+    
+    timer = setTimeout(() => {
+      callback.apply(this, args);
+    }, delay)
+  }
+}
+
+function throttling() {
+  let timer;
+
+  return function (...args) {
+    if(!timer) {
+      timer = setTimeout(() => {
+        callback.apply(this, args);
+        timer = null;
+      }, delay);
+    }
+  };
+}
