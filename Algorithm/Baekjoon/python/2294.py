@@ -16,7 +16,6 @@ def BOJ2294() :
       if i - coin >= 0 :
         dp[i] = min(dp[i], dp[i-coin] + 1)
 
-  # print(dp)
   if dp[-1] == 1e6 :
     print(-1)
   else :
