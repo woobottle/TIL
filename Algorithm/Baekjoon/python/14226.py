@@ -14,15 +14,18 @@ def BOJ14226() :
     while queue :
       curr_node, curr_clip  = queue.popleft()
 
+      # 클립 보드에 현재 화면에 있는 것을 넣는 과정
       if graph[curr_node][curr_node] == -1 :
         graph[curr_node][curr_node] = graph[curr_node][curr_clip] + 1
         queue.append([curr_node, curr_node])
       
+      # 클립보드에서 가져와서 화면에 그리는 과정
       next_node = curr_node + curr_clip
       if 0 < next_node <= S and graph[next_node][curr_clip] == -1 :
         graph[next_node][curr_clip] = graph[curr_node][curr_clip] + 1
         queue.append([next_node, curr_clip])
       
+      # 화면에 있는 이모티콘 중 하나를 삭제하는 과정
       next_node = curr_node - 1
       if 0 < next_node <= S and graph[next_node][curr_clip] == -1 :
         graph[next_node][curr_clip] = graph[curr_node][curr_clip] + 1
