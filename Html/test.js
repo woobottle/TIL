@@ -33,7 +33,7 @@ const throttle = (func, delay) => {
 const throttleInput = document.querySelector("#throttle-input");
 let j = 0;
 throttleInput.addEventListener("keyup", 
-  throttle(() => { j += 1; console.log(j) }, 1000)
+  throttle(() => { j += 1; console.log(j) }, 100)
 );
 
 
