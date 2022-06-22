@@ -13,3 +13,5 @@ function solution(number, k) {
   answer = answerArray.join("");
   return answer;
 }
+
+// https://programmers.co.kr/learn/courses/30/lessons/42883#
